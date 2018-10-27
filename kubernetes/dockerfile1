@@ -1,0 +1,4 @@
+FROM tomcat:8
+LABEL "organizer"="ramesh"
+COPY /gameoflife/openmrs-standalone.war /usr/local/tomcat/webapps/openmrs-standalone.war
+CMD ["catalina.sh","run"]

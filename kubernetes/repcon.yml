@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: Mytom-rc
+spec:
+  replicas: 5
+  selector:
+  app: MyTom
+  template:
+    metadata:
+      label: 
+        app: MyTom
+        Version: 1.0
+    spec:
+      containers:
+      - name: c1tom
+        image: tomcat
+        ports:
+        - containerPort: 8080

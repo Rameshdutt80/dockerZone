@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mytom-deploy
+spec:
+  replicas: 5
+  minReadySeconds: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: mytom
+        version: "1.0"
+    spec:
+      containers:
+      - name: tomcat-pod
+        image: tomcat
+        ports:
+        - containerPort: 8080
+

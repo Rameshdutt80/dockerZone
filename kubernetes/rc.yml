@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name:  my-second-rs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      project: My-Project
+      ver: 0.1
+  template:
+    metadata:
+      name:  my-second-pod
+      labels:
+        project: Mysampleproject2
+        ver: 0.1
+    spec:
+      containers:
+        image: jenkins
+        ports:
+        - containerPort: 8080

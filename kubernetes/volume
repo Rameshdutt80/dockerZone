@@ -1,0 +1,6 @@
+FROM ubuntu:xenial
+LABEL "version"="v1RAM DUTT"
+RUN apt-get update && apt-get install nginx -y && apt-get install git -y && apt-get install tree -y
+RUN mkdir temporary
+VOLUME ["/temporary"]
+CMD ["echo","hello"]
