@@ -1,5 +1,6 @@
 FROM tomcat:8
 LABEL "Organizer"="Ramtomcat"
-COPY /gameoflife/gameoflife.war /usr/local/tomcat/webapps/gameoflife.war
+COPY gameoflife.war /usr/local/tomcat/webapps/gameoflife.war
+COPY openmrs-standalone.war /usr/local/tomcat/webapps/openmrs-standalone.war
 EXPOSE 8080
 CMD ["catalina.sh","run"]
