@@ -1,17 +1,24 @@
-FROM ubuntu
-
+FROM dockerfile/ubuntu
 MAINTAINER RameshDutt
+# Install MongoDB.
+RUN \
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
+  apt-get update && \
+  apt-get install -y mongodb-org && \
+  rm -rf /var/lib/apt/lists/*
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+# Define mountable directories.
+VOLUME ["/data/db"]
 
-RUN echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | tee -a /etc/apt/sources.list.d/10gen.list
+# Define working directory.
+WORKDIR /data
 
-RUN apt update
+# Define default command.
+CMD ["mongod"]
 
-RUN apt -y install apt-utils
-
-RUN apt -y install mongodb-10gen
-
-#RUN echo "" >> /etc/mongodb.conf
-
-CMD ["/usr/bin/mongod", "--config", "/etc/mongodb.conf"] 
+# Expose ports.
+#   - 27017: process
+#   - 28017: http
+EXPOSE 27017
+EXPOSE 28017
