@@ -1,0 +1,4 @@
+FROM ubuntu
+MAINTAINER organiser = "RAM"
+RUN apt update && apt install mysql-server -y && echo "& y 0 abc abc y y y y y" | ./usr/bin/mysql_secure_installation
+CMD ["/bin/bash"]

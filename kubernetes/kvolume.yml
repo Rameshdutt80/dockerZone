@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webpage-server
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.15
+    ports:
+      - containerPort: 80
+    volumeMounts:
+    - mountPath: /var/www/html
+      name: webpage
+  volumes:
+    - name: webpage
+      persistentVolumeClaim:
+        claimName: webpage
+        readOnly: true  
