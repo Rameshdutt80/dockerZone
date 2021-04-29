@@ -8,7 +8,7 @@ metadata:
 spec:
   replicas: 2
   selector:
-    matchlabels:
+    matchLabels:
       app: mongodb
   template:
     metadata:
@@ -17,20 +17,20 @@ spec:
     spec: 
       containers: 
       - name: mongodb
-        image: mongodb
+        image: mongo
         ports:
         - containerPort: 27017
         env: 
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom: 
-            secretkeyRef: 
-            name: mongodb-secret
-            key: mongo-root-username
+            secretKeyRef: 
+              name: mongodb-secret
+              key: mongo-root-username
         - name: MONGO_INITDB_ROOT_PASSWORD
           valueFrom: 
-            secretkeyRef: 
-            name: mongodb-secret
-            key: mongo-root-password
+            secretKeyRef: 
+              name: mongodb-secret
+              key: mongo-root-password
 
 ---
 apiVersion: v1
